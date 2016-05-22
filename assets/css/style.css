@@ -12,3 +12,6 @@
 	position: relative;
 	margin:0px auto;
 }
+#curWord{
+	letter-spacing: 5px;
+}
