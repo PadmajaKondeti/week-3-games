@@ -1,37 +1,55 @@
  // Initalize the tallies
     
     var wins = 0, losses = 0;
-    var i=0, guessesLeft = 9, yourGuess="", compGuess="",userGuess ="", newGuess=false;
-    var animals= {
-            animal1:[{
+    var i=0, guessesLeft = 9, yourGuess="", compGuess="",userGuess ="", newGuess=false, compGuessWord = "";
+    var animalInfo= [
+            {
+                id: 1,
                 name: "Tiger",
                 image: "tiger.jpg"
-            }],
-            animal2:[{
+            },
+            {
+                id: 2,
                 name: "cow",
                 image: "cow.jpg"
-            }],
-            animal3:[{
+            },
+            {
+                id: 3,
                 name: "Lion",
                 image: "lion.jpg"
-            }],
-            animal4:[{
+            },
+            {
+                id: 4,
                 name: "Elephant",
                 image: "elephent.jpg"
-            }],
-            animal5:[{
+            },
+            {
+                id: 5,
                 name: "Monkey",
                 image: "monkey.jpg"
-            }],
-            animal6:[{
+            },
+            {
+                id: 6,
                 name: "Panda",
                 image: "panda.jpg"
-            }]
-    };
-    console.log(animals);
+            }
+        ];
+    console.log(animalInfo);
     varInitialization();
     //computer Guesses
     compGuess = randomString();
+    // iterate over each element in the array
+    for (var i = 0; i < animalInfo.length; i++){
+    // look for the entry with a matching `code` value
+        if (animalInfo[i].id == compGuess){
+        // we found it
+        compGuessWord = animalInfo[i].name;
+        // obj[i].name is the matched result
+        console.log(compGuessWord);
+        }
+    }
+
+    var animalNum = compGuess;
     //guess a letter
     document.getElementById('myText').onkeyup=function(event){   
         var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -77,6 +95,14 @@
  
     function randomString() {
         var chars = "abcdefghiklmnopqrstuvwxyz";
+        var string_length = 1;
+        var randomstring = '';
+        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum,rnum+1);
+        return(randomstring);
+    }
+    function randomWord() {
+        var chars = "12345";
         var string_length = 1;
         var randomstring = '';
         var rnum = Math.floor(Math.random() * chars.length);
