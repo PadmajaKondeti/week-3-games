@@ -2,6 +2,33 @@
     
     var wins = 0, losses = 0;
     var i=0, guessesLeft = 9, yourGuess="", compGuess="",userGuess ="", newGuess=false;
+    var animals= {
+            animal1:[{
+                name: "Tiger",
+                image: "tiger.jpg"
+            }],
+            animal2:[{
+                name: "cow",
+                image: "cow.jpg"
+            }],
+            animal3:[{
+                name: "Lion",
+                image: "lion.jpg"
+            }],
+            animal4:[{
+                name: "Elephant",
+                image: "elephent.jpg"
+            }],
+            animal5:[{
+                name: "Monkey",
+                image: "monkey.jpg"
+            }],
+            animal6:[{
+                name: "Panda",
+                image: "panda.jpg"
+            }]
+    };
+    console.log(animals);
     varInitialization();
     //computer Guesses
     compGuess = randomString();
