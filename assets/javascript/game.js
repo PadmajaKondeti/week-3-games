@@ -1,36 +1,84 @@
  // Initalize the tallies
     
     var wins = 0, losses = 0;
-    var i=0, guessesLeft = 9, yourGuess="", compGuess="",userGuess ="", newGuess=false, compGuessWord = "";
+    var numGuesses=0, guessesLeft = 9, yourGuess="", compGuess="",userGuess ="", newGuess=false, compGuessWord = "";
     var animals = ["elephant", "tiger", "cow","monkey", "lion", "panda"];
     console.log(animals);
     varInitialization();
     var comGuessAnimal = randomWord();
     var wordLength = comGuessAnimal.length;
-    var emptyString = " ";
+    var emptyString = [], correctGuesses=0;
     console.log(comGuessAnimal);
     var strComGuessAnimal = comGuessAnimal.split("");
     console.log(strComGuessAnimal);
     for (var i = 0; i < wordLength; i++){
-        emptyString = emptyString + "_";
-    }
+        emptyString[i] = "_";
+    };
+    //emptyString =emptyString.split("");
     document.getElementById("curWord").innerHTML = emptyString; 
+    var wordFound=false;
     //guess a letter
-    document.getElementById('myText').onkeyup=function(event){   
+    document.getElementById("myText").onkeyup = function(event){   
         var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-        yourGuess = yourGuess + userGuess;
-        for (var j = 0; j < wordLength; j++){
-            if (strComGuessAnimal[j] == userGuess){
-                emptyString[j] = strComGuessAnimal[j];
+        yourGuess = yourGuess + userGuess +",";
+        numGuesses++;
+        for (var j = 0; j < wordLength; j++) {
+            if (strComGuessAnimal[j] == userGuess) {
+                correctGuesses++;
+                emptyString[j] = userGuess;
                 matchLetterFound = true;
-                debugger;
+                
                 document.getElementById("curWord").innerHTML = emptyString; 
-                break;
+                
+                //break;
 
-            } else{
+            } else {
                 matchLetterFound = false;
             }
+        };
+        if (correctGuesses == strComGuessAnimal.length) {
+            wins++;
+            wordFound = true;
+            document.getElementById("wins").innerHTML = wins; 
+            correctGuesses = 0;
+            document.getElementById("name").innerHTML = comGuessAnimal.toUpperCase(); 
+            
+            var image = document.createElement("img");
+            var imageParent = document.getElementById("imgAnimal");
+            image.id = "imgName";
+            image.className = "img-rounded";
+            image.alt = comGuessAnimal;
+            image.width="304";
+            image.height="236";
+
+            image.src = "assets/images/"+comGuessAnimal+".jpg";
+            //debugger;
+            console.log(image);
+            imageParent.appendChild(image);
+
+
+
+
+        } else if (correctGuesses < strComGuessAnimal.length) {
+           losses++;
+            
+        };
+        if (wordFound == true){
+            guessesLeft = 0;
+        } else {
+            guessesLeft = 9 - numGuesses;
         }
+        if (guessesLeft == 0) {
+            guessesLeft = 9;
+            yourGuess = "";
+            emptyString=[];
+            document.getElementById("curWord").innerHTML = emptyString; 
+
+        };
+        document.getElementById("guessesLeft").innerHTML = guessesLeft ; 
+        document.getElementById('myText').value="";
+        document.getElementById("yourGuess").innerHTML = yourGuess;
+        document.getElementById("losses").innerHTML = losses;
     }
 
        /* if (compGuess == userGuess){
