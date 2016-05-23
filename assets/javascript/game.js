@@ -3,14 +3,12 @@
     var wins = 0, losses = 0;
     var numGuesses=0, guessesLeft = 9, yourGuess="", compGuess="",userGuess ="", newGuess=false, compGuessWord = "";
     var animals = ["elephant", "tiger", "cow","monkey", "lion", "panda"];
-    console.log(animals);
     varInitialization();
     var comGuessAnimal = randomWord();
     var wordLength = comGuessAnimal.length;
     var emptyString = [], correctGuesses=0;
     console.log(comGuessAnimal);
     var strComGuessAnimal = comGuessAnimal.split("");
-    console.log(strComGuessAnimal);
     for (var i = 0; i < wordLength; i++){
         emptyString[i] = "_";
     };
@@ -52,8 +50,8 @@
             image.height="236";
 
             image.src = "assets/images/"+comGuessAnimal+".jpg";
-            //debugger;
-            console.log(image);
+            
+            
             imageParent.appendChild(image);
             // creating  and appending audio object
             if (comGuessAnimal == "cow"){
@@ -68,18 +66,27 @@
                 srcAnimalsound_1 = "http://static1.grsites.com/archive/sounds/animals/animals059.wav";
                 srcAnimalsound_2 = "http://static1.grsites.com/archive/sounds/animals/animals059.mp3";
                 
-            } else {
+            } else if (comGuessAnimal == "elephant"){
+                srcAnimalsound_1 = "http://static1.grsites.com/archive/sounds/animals/animals130.mp3";
+                srcAnimalsound_2 = "http://static1.grsites.com/archive/sounds/animals/animals130.wav";
+
+            } else if (comGuessAnimal == "lion"){
                 srcAnimalsound_1 = "assets/sounds/" + comGuessAnimal+".mp3";
                 srcAnimalsound_2 = "assets/sounds/" + comGuessAnimal+".wav";
-            }
 
+            } else if (comGuessAnimal == "panda"){
+                srcAnimalsound_1 = "assets/sounds/" + comGuessAnimal+".mp3";
+                srcAnimalsound_2 = "assets/sounds/" + comGuessAnimal+".wav";
+
+            }
             var x = document.createElement("AUDIO");
             var audioParent = document.getElementById("imgAudio");
             if (x.canPlayType("audio/mpeg")) {
                 x.setAttribute("src", srcAnimalsound_1);
             } else {
-                x.setAttribute("src",srcAnimalsound_2);
+                x.setAttribute("src",  srcAnimalsound_2);
             }
+            console.log(x);
             x.setAttribute("controls", "controls");
             audioParent.appendChild(x);
             //document.getElementById('imgAudio').play();
