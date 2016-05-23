@@ -42,7 +42,7 @@
             document.getElementById("wins").innerHTML = wins; 
             correctGuesses = 0;
             document.getElementById("name").innerHTML = comGuessAnimal.toUpperCase(); 
-            
+             // creating  and appending image object
             var image = document.createElement("img");
             var imageParent = document.getElementById("imgAnimal");
             image.id = "imgName";
@@ -55,9 +55,34 @@
             //debugger;
             console.log(image);
             imageParent.appendChild(image);
+            // creating  and appending audio object
+            if (comGuessAnimal == "cow"){
+                srcAnimalsound_1 = "http://static1.grsites.com/archive/sounds/animals/animals055.wav";
+                srcAnimalsound_2 = "http://static1.grsites.com/archive/sounds/animals/animals055.mp3";
 
+            } else if (comGuessAnimal == "tiger"){
+                srcAnimalsound_1 = "http://static1.grsites.com/archive/sounds/animals/animals031.wav";
+                srcAnimalsound_2 = "http://static1.grsites.com/archive/sounds/animals/animals031.mp3";
+                
+            } else if (comGuessAnimal == "monkey") {
+                srcAnimalsound_1 = "http://static1.grsites.com/archive/sounds/animals/animals059.wav";
+                srcAnimalsound_2 = "http://static1.grsites.com/archive/sounds/animals/animals059.mp3";
+                
+            } else {
+                srcAnimalsound_1 = "assets/sounds/" + comGuessAnimal+".mp3";
+                srcAnimalsound_2 = "assets/sounds/" + comGuessAnimal+".wav";
+            }
 
-
+            var x = document.createElement("AUDIO");
+            var audioParent = document.getElementById("imgAudio");
+            if (x.canPlayType("audio/mpeg")) {
+                x.setAttribute("src", srcAnimalsound_1);
+            } else {
+                x.setAttribute("src",srcAnimalsound_2);
+            }
+            x.setAttribute("controls", "controls");
+            audioParent.appendChild(x);
+            //document.getElementById('imgAudio').play();
 
         } else if (correctGuesses < strComGuessAnimal.length) {
            losses++;
